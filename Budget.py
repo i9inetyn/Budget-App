@@ -1,27 +1,28 @@
 # Budget app
-# IZU_DADA CONTRIBUTED INDIRECTLY, THANKS
-# I DID THIS AND ADDED LOTS OF FEATURES
+# I studied the code then make some changes to the codes...
+# i also learn by using the code 
 
 database = { }
 
 class Budget():
+
     def __init__(self, category, amount):
         self.category = category
         self.amount = amount
 
-    def deposit(amount, bal):
+    def deposit(self, amount, bal):
         bal += amount
         return bal
 
-    def withdraw(user, amount, bal):
+    def withdraw(self, user, amount, bal):
         bal -= amount
         return bal
 
-    def balance(db):
+    def balance(self, db):
         for categ, bal in db.items():
             print(categ, bal)
 
-    def transfer(db, option1, amount, option2):
+    def transfer(self, db, option1, amount, option2):
         value1 = db[option1]
         valuue2 = db[option2]
 
@@ -38,22 +39,22 @@ def init():
 def menu():
     try:
 
-        user = int(input('\n=== ****What would you like to do?**** ===\nPress (1) To create a new budget\nPress (2) To deposit into a budget\nPress (3) To withdraw from a budget\nPress (4) To check your budget balance\nPress (5) To transfer money between budgets\nPress (6) To quit\n'))
+        optionSelected = int(input('\n=== ****What would you like to do?**** ===\nPress (1) To create a new budget\nPress (2) To deposit into a budget\nPress (3) To withdraw from a budget\nPress (4) To check your budget balance\nPress (5) To transfer money between budgets\nPress (6) To quit\n'))
     except:
         print('Invalid input')
         menu()
 
-    if (user == 1):
+    if (optionSelected == 1):
         new_budget()
-    elif (user == 2):
-        credit()
-    elif (user == 3):
+    elif (optionSelected == 2):
+        deposit()
+    elif (optionSelected == 3):
         debit()
-    elif (user == 4):
+    elif (optionSelected == 4):
         balance()
-    elif (user == 5):
+    elif (optionSelected == 5):
         transfer()
-    elif (user == 6):
+    elif (optionSelected == 6):
         out()
     else:
         print('Invalid input\n')
@@ -69,7 +70,7 @@ def new_budget():
     except:
         print('\nInvalid input')
         new_budget()
-    budget = Budget(budget_title, amount)
+        budget = Budget(budget_title, amount)
     database[budget_title] = amount
     print('')
     print(f'Budget {budget_title} was setup with ${amount}')
@@ -132,7 +133,7 @@ def debit():
 
 
 
-def credit():
+def deposit():
     print("**** Deposit into a budget ****\n")
     print('**** Available Budgets ****')
     for key, value in database.items():
@@ -155,12 +156,12 @@ def credit():
             if (pick == 1):
                 new_budget()
             elif (pick == 2):
-                credit()
+                deposit()
             elif (pick == 3):
                 menu()
             else:
                 print('Invalid option\n')
-                credit()
+                deposit()
 
     elif (pick == 2):
         print('\nYou terminated the deposit transaction')
